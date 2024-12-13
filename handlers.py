@@ -130,6 +130,15 @@ async def locat_confirm(callback: CallbackQuery):
 @router.callback_query(F.data == 'revoke')
 async def locat_revoke(callback: CallbackQuery):
     await callback.message.edit_text(f"❗ Попробуйте снова.")
+
+# Обработка коллбэка погоды на 5 дней
+@router.callback_query(F.data == 'five_day')
+async def weather_five_day(callback: CallbackQuery):
+    db = DataBase(DATABASE_NAME)
+    user_city = db.check_city(callback.from_user.id)
+    
+    weather_data = await getdata.get_weather_five_days(user_city)
+    await outputdata.output_weather_five_days(callback, weather_data, user_city)
     
 """Обработка настройки профиля пользователя"""
 @router.message(F.text == "⚙️ Настройки профиля")

@@ -47,3 +47,7 @@ choise = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text="✅ Да, хочу", callback_data='choise_yes'),
     InlineKeyboardButton(text="❌ Нет, не хочу", callback_data='choise_no')]
 ])
+
+weather_five_day = InlineKeyboardMarkup(inline_keyboard=[
+    [InlineKeyboardButton(text="🌦️ Прогноз погоды на 5 дней", callback_data='five_day')],
+])

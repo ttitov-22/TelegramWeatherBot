@@ -18,3 +18,12 @@ async def get_coordinates_city(lat, lon):
                     data = await res_weather.json()
     
     return data
+
+"""Парсинг данных по api погоды на 5 дней"""
+async def get_weather_five_days(city):
+    async with aiohttp.ClientSession() as session:
+        async with session.get(f"https://api.openweathermap.org/data/2.5/forecast?q={city}&appid={OPEN_WEATHER_TOKEN}&units=metric"
+                               ) as res_weather:
+            data = await res_weather.json()
+            
+    return data
